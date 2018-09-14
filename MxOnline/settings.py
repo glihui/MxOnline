@@ -138,3 +138,13 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+EMAIL_HOST = "smtp.qq.com"
+EMAIL_POST = 25
+EMAIL_HOST_USER = "908070584@qq.com"
+EMAIL_HOST_PASSWORD = "sddgwyvfvhgkbfej"
+EMAIL_HOST_TLS = True
+EMAIL_FROM = "908070584@qq.com"
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
