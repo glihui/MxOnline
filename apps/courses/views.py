@@ -3,8 +3,9 @@ from django.views.generic import View
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
 
-from .models import Course, CourseResource
-from operation.models import UserFavorite, CourseComments
+from .models import Course, CourseResource, Video
+from operation.models import UserFavorite, CourseComments, UserCourse
+from utils.mixin_utils import LoginRequiredMixin
 
 # Create your views here.
 
@@ -37,6 +38,35 @@ class CourseListView(View):
             "all_courses": courses,
             "sort": sort,
             "hot_courses": hot_courses,
+        })
+
+
+class VideoPlayView(View):
+    """
+    视频播放页面
+    """
+    def get(self, request, video_id):
+        video = Video.objects.get(id=int(video_id))
+        course = video.lesson.course
+        # 查询用户是否已经关联了该课程
+        user_courses = UserCourse.objects.filter(user=request.user, course=course)
+        if not user_courses:
+            user_course = UserCourse(user=request.user, course=course)
+            user_course.save()
+
+        user_cousers = UserCourse.objects.filter(course=course)
+        user_ids = [user_couser.user.id for user_couser in user_cousers]
+        all_user_courses = UserCourse.objects.filter(user_id__in=user_ids)
+        # 取出所有课程id
+        course_ids = [user_couser.course.id for user_couser in all_user_courses]
+        # 获取学过该用户学过其他的所有课程
+        relate_courses = Course.objects.filter(id__in=course_ids).order_by("-click_nums")[:5]
+        all_resources = CourseResource.objects.filter(course=course)
+        return render(request, "course-play.html", {
+            "course": course,
+            "course_resources": all_resources,
+            "relate_courses": relate_courses,
+            "video": video
         })
 
 
@@ -73,24 +103,40 @@ class CourseDetailView(View):
         })
 
 
-class CourseInfoView(View):
+class CourseInfoView(LoginRequiredMixin, View):
     """
     课程章节信息
     """
     def get(self, request, course_id):
         course = Course.objects.get(id=int(course_id))
+
+        # 查询用户是否已经关联了该课程
+        user_courses = UserCourse.objects.filter(user=request.user, course=course)
+        if not user_courses:
+            user_course = UserCourse(user=request.user, course=course)
+            user_course.save()
+
+        user_cousers = UserCourse.objects.filter(course=course)
+        user_ids = [user_couser.user.id for user_couser in user_cousers]
+        all_user_courses = UserCourse.objects.filter(user_id__in=user_ids)
+        # 取出所有课程id
+        course_ids = [user_couser.course.id for user_couser in all_user_courses]
+        # 获取学过该用户学过其他的所有课程
+        relate_courses = Course.objects.filter(id__in=course_ids).order_by("-click_nums")[:5]
         all_resources = CourseResource.objects.filter(course=course)
         return render(request, "course-video.html", {
             "course": course,
-            "course_resources": all_resources
+            "course_resources": all_resources,
+            "relate_courses": relate_courses
         })
 
 
-class CommentsView(View):
+class CommentsView(LoginRequiredMixin, View):
     def get(self, request, course_id):
         course = Course.objects.get(id=int(course_id))
         all_resources = CourseResource.objects.filter(course=course)
-        all_comments = CourseComments.objects.all()
+        # all_comments = CourseComments.objects.all()
+        all_comments = CourseComments.objects.filter(course=course)
         return render(request, "course-comment.html", {
             "course": course,
             "course_resources": all_resources,
@@ -107,9 +153,9 @@ class AddComentsView(View):
             # 判断用户登录状态
             return HttpResponse('{"status": "fail", "msg":"用户未登录"}', content_type='application/json')
 
-        course_id = request.POST.get("couse_id", 0)
+        course_id = request.POST.get("course_id", 0)
         comments = request.POST.get("comments", "")
-        if course_id > 0 and comments:
+        if int(course_id) > 0 and comments:
             course_comments = CourseComments()
             course = Course.objects.get(id=int(course_id))
             course_comments.course = course
