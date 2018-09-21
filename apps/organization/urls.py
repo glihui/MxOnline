@@ -14,7 +14,7 @@ urlpatterns = [
     re_path('home/(?P<org_id>.*)/', OrgHomeView.as_view(), name="org_home"),
     re_path('course/(?P<org_id>.*)/', OrgCourseView.as_view(), name="org_course"),
     re_path('desc/(?P<org_id>.*)/', OrgDescView.as_view(), name="org_desc"),
-    re_path('teacher/(?P<org_id>.*)/', OrgTeacherView.as_view(), name="org_teacher"),
+    re_path('org_teacher/(?P<org_id>.*)/', OrgTeacherView.as_view(), name="org_teacher"),
 
     # 机构收藏
     path('add_fav/', AddFavView.as_view(), name="add_fav"),
@@ -23,7 +23,7 @@ urlpatterns = [
     path('teachers/list/', TeacherListView.as_view(), name="teachers_list"),
 
     # 讲师详情页
-    re_path('teacher_detail/(?P<teacher_id>.*)/', TeacherDetailView.as_view(), name="teacher_detail"),
+    re_path('teachers_detail/(?P<teacher_id>.*)/', TeacherDetailView.as_view(), name="teacher_detail"),
 ]
 
 app_name = 'org'
