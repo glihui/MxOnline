@@ -30,6 +30,9 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+AUTHENTICATION_BACKENDS = (
+    'users.views.CustomBackend',
+)
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -43,7 +46,9 @@ INSTALLED_APPS = [
     'organization',
     'operation',
     'xadmin',
-    'crispy_forms'
+    'crispy_forms',
+    'captcha',
+    'pure_pagination',
 ]
 
 AUTH_USER_MODEL = "users.UserProfile"
@@ -72,6 +77,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -131,3 +137,16 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+
+EMAIL_HOST = "smtp.qq.com"
+EMAIL_POST = 25
+EMAIL_HOST_USER = "908070584@qq.com"
+EMAIL_HOST_PASSWORD = ""
+EMAIL_HOST_TLS = True
+EMAIL_FROM = "908070584@qq.com"
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
