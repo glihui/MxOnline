@@ -21,12 +21,13 @@ import xadmin
 from django.views.static import serve
 
 from users.views import LogoutView, LoginView, RegisterView, ActiveUserView, ForgetPwdView, ResetView, ModifyPwdView
+from users.views import IndexView
 from organization.views import OrgView
 from MxOnline.settings import MEDIA_ROOT
 
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
-    path('', TemplateView.as_view(template_name="index.html"), name="index"),
+    path('', IndexView.as_view(), name="index"),
     path('login/', LoginView.as_view(), name="login"),
     path('logout/', LogoutView.as_view(), name="logout"),
     path('register/', RegisterView.as_view(), name="register"),
@@ -45,6 +46,13 @@ urlpatterns = [
     # 配置上传文件的访问处理函数
     url(r'media/(?P<path>.*)', serve, {"document_root": MEDIA_ROOT}),
 
+    # url(r'static/(?P<path>.*)', serve, {"document_root": STATIC_ROOT}),
+
     # 用户中心url配置
     path('users/', include('users.urls', namespace="users")),
 ]
+
+
+# 全局404页面配置
+handler404 = 'users.views.page_not_found'
+handler500 = 'users.views.page_error'
