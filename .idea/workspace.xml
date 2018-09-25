@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="892d3488-788b-470c-9557-afc0c1dd8fba" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/users/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/users/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/org_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/org_base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/usercenter-base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/usercenter-base.html" afterDir="false" />
-    </list>
+    <list default="true" id="892d3488-788b-470c-9557-afc0c1dd8fba" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -313,8 +306,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1967" />
-    <option name="y" value="141" />
+    <option name="x" value="144" />
+    <option name="y" value="58" />
     <option name="width" value="1656" />
     <option name="height" value="1009" />
   </component>
@@ -465,7 +458,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1967" y="140" width="1656" height="1010" extended-state="0" />
+    <frame x="2167" y="165" width="1656" height="1009" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -473,7 +466,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Python Console" order="12" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.08287293" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.08287293" />
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.121980675" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
