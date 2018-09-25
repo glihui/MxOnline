@@ -25,7 +25,9 @@ class CourseAdmin(object):
     list_editable = ['degree', 'desc']
     exclude = ['fav_nums']
     inlines = [LessonInline, CourseResourceInline]
+    # style_fields = {"detail": "ueditor"}
     # refresh_times = [3, 5]
+    # import_excel = True
 
     def queryset(self):
         qs = super(CourseAdmin, self).queryset()
@@ -40,6 +42,7 @@ class CourseAdmin(object):
             course_org = obj.course_org
             course_org.course_nums = Course.objects.filter(course_org=course_org).count()
             course_org.save()
+
 
 class BannerCourseAdmin(object):
     list_display = ['name', 'desc', 'detail', 'degree', 'learn_times', 'students']

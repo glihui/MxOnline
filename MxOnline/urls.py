@@ -50,6 +50,9 @@ urlpatterns = [
 
     # 用户中心url配置
     path('users/', include('users.urls', namespace="users")),
+
+    # 富文本相关url
+    # path('ueditor/', include('DjangoUeditor.urls')),
 ]
 
 
