@@ -26,7 +26,7 @@ SECRET_KEY = '!6kuc1be47l(c2)f-wv8bbne5d!2b%rg+++ruglyo&naf)vzv&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -93,8 +93,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': "mxonline",
-        'USER': 'mysql',
-        'PASSWORD': "mysql",
+        'USER': 'root',
+        'PASSWORD': "Dream6833526",
         'HOST': "127.0.0.1"
     }
 }
@@ -150,3 +150,6 @@ EMAIL_FROM = "908070584@qq.com"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
